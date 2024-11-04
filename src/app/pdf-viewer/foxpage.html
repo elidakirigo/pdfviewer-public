@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Foxit PDF SDK For Web</title>
+    <link rel="stylesheet" href="../vendors/foxit/lib/PDFViewCtrl.css" />
+  </head>
+  <body onload="winload()">
+    <div id="foxitdocs">
+      <div id="pdf-viewer"></div>
+    </div>
+    <script src="./lib/license-key.js"></script>
+    <script type="module" src="./lib/PDFViewCtrl.full.js"></script>
+    <script src="./lib/iframefoxit.js"></script>
+    <script>
+      console.log({ PDFViewCtrl });
+
+      function winload() {
+        window.parent.iframeload(addfoxitdoc("./lib"));
+      }
+    </script>
+  </body>
+</html>

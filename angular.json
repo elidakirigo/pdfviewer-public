@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "aot": false,
             "outputPath": "dist/pdfviewer",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -34,7 +35,11 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/lib/PDFViewCtrl.full.js",
+              "src/lib/keys.js",
+              "src/lib/PDFViewCtrl.full.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -98,7 +103,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [ ]
           }
         }
       }
