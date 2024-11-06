@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-    />
-    <title>Foxit PDF SDK For Web</title>
-    <link rel="stylesheet" href="../vendors/foxit/lib/PDFViewCtrl.css" />
-  </head>
-  <body onload="winload()">
-    <div id="foxitdocs">
-      <div id="pdf-viewer"></div>
-    </div>
-    <script src="./lib/license-key.js"></script>
-    <script type="module" src="./lib/PDFViewCtrl.full.js"></script>
-    <script src="./lib/iframefoxit.js"></script>
-    <script>
-      console.log({ PDFViewCtrl });
+<head>
+  <meta charset="UTF-8" />
+  <title>Foxit PDF SDK For Web</title>
+  <link rel="stylesheet" href="public/lib/PDFViewCtrl.css" />
+</head>
+<body>
+  <div id="pdf-viewer"></div>
+  <script src="public/lib/license-key.js"></script>
+  <script src="public/lib/PDFViewCtrl.full.js"></script>
+  <script>
+    var { PDFViewer } = PDFViewCtrl;
 
-      function winload() {
-        window.parent.iframeload(addfoxitdoc("./lib"));
+    var pdfViewer = new PDFViewer({
+      libPath: 'public/lib',
+      jr: { licenseSN, licenseKey },
+    });
+    pdfViewer.init('#pdf-viewer');
+
+    // Listen for messages from the parent window and open PDF once
+    window.addEventListener('message', function (event) {
+      if (event.data instanceof ArrayBuffer) {
+        pdfViewer.openPDFByFile(event.data).then(() => {
+          console.log("PDF loaded successfully in iframe");
+        }).catch((error) => {
+          console.error("Error loading PDF:", error);
+        });
       }
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

@@ -29,16 +29,16 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": "public"
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
             "scripts": [
-              "src/lib/PDFViewCtrl.full.js",
-              "src/lib/keys.js",
-              "src/lib/PDFViewCtrl.full.js"
+              "public/lib/PDFViewCtrl.full.js",
+              "public/lib/keys.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,
